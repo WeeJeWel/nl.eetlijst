@@ -1,0 +1,125 @@
+{
+    "id": "nl.eetlijst",
+    "name": {
+        "en": "Eetlijst"
+    },
+    "version": "1.0.0",
+    "compatibility": ">=1.0.0",
+    "author": {
+        "name": "Emile Nijssen",
+        "email": "emile@athom.nl"
+    },
+    "description": "Eetlijst for Homey",
+    "category": "internet",
+    "images": {
+	    "large": "./assets/images/large.png",
+	    "small": "./assets/images/small.png"
+    },
+    "flow": {
+	    "conditions": [
+		    {
+			    "id": "today_has_cook",
+			    "title": {
+				    "en": "!{{Someone's|Someone's not}} cooking today",
+				    "nl": "!{{Iemand|Niemand}} kookt vandaag"
+			    }
+		    },
+		    {
+			    "id": "user_has_status_today",
+			    "title": {
+				    "en": "Status today !{{is|is not}}",
+				    "nl": "Status vandaag !{{is|is not}}"
+			    },
+			    "args": [
+				    {
+					    "name": "user",
+					    "type": "autocomplete"
+				    },
+				    {
+					    "name": "state",
+					    "type": "dropdown",
+					    "values": [
+						    {
+							    "id": "eat",
+							    "label": {
+								    "en": "Eats",
+								    "nl": "Eet mee"
+							    }
+						    },
+						    {
+							    "id": "cook",
+							    "label": {
+								    "en": "Cooks",
+								    "nl": "Kookt"
+							    }
+						    },
+						    {
+							    "id": "absent",
+							    "label": {
+								    "en": "Absent",
+								    "nl": "Eet niet mee"
+							    }
+						    },
+						    {
+							    "id": "unknown",
+							    "label": {
+								    "en": "Unknown",
+								    "nl": "Onbekend"
+							    }
+						    }
+					    ]
+				    }
+			    ]
+		    }
+	    ],
+	    "actions": [
+		    {
+			    "id": "set_state_today",
+			    "title": {
+				    "en": "Set status for today",
+				    "nl": "Zet status voor vandaag"
+			    },
+			    "args": [
+				    {
+					    "name": "user",
+					    "type": "autocomplete"
+				    },
+				    {
+					    "name": "state",
+					    "type": "dropdown",
+					    "values": [
+						    {
+							    "id": "eat",
+							    "label": {
+								    "en": "Eats",
+								    "nl": "Eet mee"
+							    }
+						    },
+						    {
+							    "id": "cook",
+							    "label": {
+								    "en": "Cooks",
+								    "nl": "Kookt"
+							    }
+						    },
+						    {
+							    "id": "absent",
+							    "label": {
+								    "en": "Absent",
+								    "nl": "Eet niet mee"
+							    }
+						    },
+						    {
+							    "id": "unknown",
+							    "label": {
+								    "en": "Unknown",
+								    "nl": "Onbekend"
+							    }
+						    }
+					    ]
+				    }
+			    ]
+		    }
+	    ]
+    }
+}

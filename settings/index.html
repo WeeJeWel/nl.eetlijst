@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+
+		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+
+	</head>
+	<body>
+
+		<h1>Eetlijst</h1>
+
+		<form id="form" class="form">
+
+			<p class="row">
+				<label for="username">Username</label>
+				<input id="username" type="text" name="username" />
+			</p>
+
+			<p class="row">
+				<label for="password">Password</label>
+				<input id="password" type="password" name="password" />
+			</p>
+
+			<p class="row">
+				<button id="save">
+					<i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;
+					Save
+				</button>
+			</p>
+
+		</form>
+
+		<script type="text/javascript">
+		function onHomeyReady() {
+
+			$(function(){
+
+				Homey.get(function( err, settings ){
+					if( err ) return console.error( err );
+
+					$('#username').val( settings.username );
+					$('#password').val( settings.password );
+
+					$('#form').submit(function(e){
+						e.preventDefault();
+
+						var username = $('#username').val();
+						var password = $('#password').val();
+
+						$('#save').attr('disabled', 'disabled');
+
+						Homey.set('username', username, function( err ){
+							if( err ) return Homey.alert( err.message || err.toString(), 'error' );
+
+							Homey.set('password', password, function( err ){
+								if( err ) return Homey.alert( err.message || err.toString(), 'error' );
+
+								Homey.alert('Settings saved', 'info');
+								$('#save').removeAttr('disabled');
+							});
+						});
+					})
+
+					Homey.ready();
+				});
+
+			});
+		}
+		</script>
+
+	</body>
+</html>
